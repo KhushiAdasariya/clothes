@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <!-- Main Branding Group -->
+    <LinearLayout
+        android:id="@+id/brandGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.45">
+
+        <!-- Logo (Since it already has "Clothify", we make it prominent) -->
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="220dp"
+            android:layout_height="220dp"
+            android:src="@drawable/logo"
+            android:contentDescription="Clothify Logo"
+            android:scaleType="centerInside" />
+
+        <!-- Minimalist Accent Line below the logo image - Updated to AJIO color -->
+        <View
+            android:layout_width="80dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="4dp"
+            android:background="#2C4152" />
+
+        <!-- Elegant Tagline -->
+        <TextView
+            android:id="@+id/tagline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:letterSpacing="0.4"
+            android:text="STYLE REINVENTED"
+            android:textColor="#94A3B8"
+            android:textSize="13sp"
+            android:textAllCaps="true"
+            android:fontFamily="sans-serif-medium" />
+    </LinearLayout>
+
+    <!-- Bottom Loading Section -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleSmall"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:indeterminateTint="#2C4152" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Premium Fashion Collection"
+            android:textColor="#94A3B8"
+            android:textSize="11sp"
+            android:letterSpacing="0.1"
+            android:fontFamily="sans-serif-light" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

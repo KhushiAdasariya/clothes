@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="12dp"
+    android:layout_marginVertical="8dp"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="0dp"
+    app:strokeColor="#F1F5F9"
+    app:strokeWidth="1dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:background="#FFFFFF">
+
+        <!-- Product Image -->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imgCart"
+            android:layout_width="100dp"
+            android:layout_height="130dp"
+            android:scaleType="centerCrop"
+            android:background="#F8FAFC"
+            app:shapeAppearanceOverlay="@style/RoundedCornerImage" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="16dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CLOTHIFY"
+                android:textColor="#94A3B8"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.1" />
+
+            <TextView
+                android:id="@+id/tvCartName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="Product Name"
+                android:textColor="#1E293B"
+                android:textSize="15sp"
+                android:fontFamily="sans-serif-medium"
+                android:layout_marginTop="2dp" />
+
+            <TextView
+                android:id="@+id/tvCartPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="₹1,299"
+                android:textColor="#2C4152"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <!-- Quantity Controls -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="@drawable/category_chip_bg"
+                android:backgroundTint="#F8FAFC"
+                android:paddingHorizontal="4dp"
+                android:paddingVertical="4dp">
+
+                <ImageView
+                    android:id="@+id/btnMinus"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:padding="8dp"
+                    android:src="@android:drawable/ic_menu_revert"
+                    android:rotation="270"
+                    app:tint="#2C4152" />
+
+                <TextView
+                    android:id="@+id/tvQuantity"
+                    android:layout_width="32dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="1"
+                    android:textColor="#1E293B"
+                    android:textStyle="bold"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:id="@+id/btnPlus"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:padding="8dp"
+                    android:src="@android:drawable/ic_input_add"
+                    app:tint="#2C4152" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Remove Button -->
+        <ImageView
+            android:id="@+id/btnRemoveCart"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:padding="10dp"
+            android:src="@android:drawable/ic_menu_close_clear_cancel"
+            app:tint="#94A3B8"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:layout_gravity="top" />
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

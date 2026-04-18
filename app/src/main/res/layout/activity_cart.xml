@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F8FAFC">
+
+    <!-- Header -->
+    <RelativeLayout
+        android:id="@+id/headerCart"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="#FFFFFF"
+        android:elevation="2dp"
+        android:paddingHorizontal="16dp">
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_centerVertical="true"
+            android:padding="4dp"
+            android:rotation="180"
+            android:src="@drawable/arrow"
+            app:tint="#2C4152" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@id/btnBack"
+            android:text="Your Cart"
+            android:textColor="#2C4152"
+            android:textSize="20sp"
+            android:fontFamily="sans-serif-medium" />
+
+        <TextView
+            android:id="@+id/tvCartCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:text="0 Items"
+            android:textColor="#94A3B8"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+    <!-- Scrollable Content -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollViewCart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/headerCart"
+        android:layout_above="@id/layoutCheckout"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Cart Items List -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvCart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:paddingHorizontal="8dp"
+                android:nestedScrollingEnabled="false"
+                tools:listitem="@layout/item_cart" />
+
+            <!-- Price Summary -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="0dp"
+                app:strokeColor="#E2E8F0"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp"
+                    android:background="#FFFFFF">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Order Summary"
+                        android:textColor="#2C4152"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#F1F5F9" android:layout_marginVertical="16dp"/>
+
+                    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Subtotal" android:textColor="#64748B"/>
+                        <TextView android:id="@+id/tvSubtotal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="₹0" android:textColor="#1E293B" android:textStyle="bold"/>
+                    </RelativeLayout>
+
+                    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Shipping Fee" android:textColor="#64748B"/>
+                        <TextView android:id="@+id/tvShippingFee" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="FREE" android:textColor="#16A34A" android:textStyle="bold"/>
+                    </RelativeLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#F1F5F9" android:layout_marginVertical="16dp"/>
+
+                    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Total Amount" android:textColor="#2C4152" android:textSize="18sp" android:textStyle="bold"/>
+                        <TextView android:id="@+id/tvTotalCartAmount" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="₹0" android:textColor="#FF5252" android:textSize="18sp" android:textStyle="bold"/>
+                    </RelativeLayout>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <View android:layout_width="match_parent" android:layout_height="40dp"/>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Empty Cart State -->
+    <LinearLayout
+        android:id="@+id/layoutCartEmpty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/headerCart"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:padding="40dp">
+        <ImageView android:layout_width="150dp" android:layout_height="150dp" android:src="@drawable/cart" app:tint="#E2E8F0"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Your cart is empty" android:textColor="#1E293B" android:textSize="20sp" android:textStyle="bold" android:layout_marginTop="24dp"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnShopNow"
+            android:layout_width="wrap_content"
+            android:layout_height="56dp"
+            android:layout_marginTop="32dp"
+            android:text="SHOP NOW"
+            android:backgroundTint="#2C4152"
+            app:cornerRadius="12dp"
+            android:paddingHorizontal="40dp"/>
+    </LinearLayout>
+
+    <!-- Bottom Checkout Bar -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/layoutCheckout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:cardCornerRadius="0dp"
+        app:cardElevation="24dp"
+        app:strokeWidth="1dp"
+        app:strokeColor="#F1F5F9">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:background="#FFFFFF">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <TextView android:id="@+id/tvFinalCartPrice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="₹0" android:textColor="#1E293B" android:textSize="20sp" android:textStyle="bold"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="View detailed bill" android:textColor="#FF5252" android:textSize="12sp" android:textStyle="bold"/>
+            </LinearLayout>
+
+            <!-- Checkout Button: AJIO Teal background with White text -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCheckout"
+                android:layout_width="wrap_content"
+                android:layout_height="58dp"
+                android:paddingHorizontal="32dp"
+                android:text="CHECKOUT"
+                android:textAllCaps="true"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                app:cornerRadius="16dp"
+                android:backgroundTint="#2C4152"
+                android:elevation="4dp" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</RelativeLayout>

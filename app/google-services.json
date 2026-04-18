@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "792531543146",
+    "project_id": "clothy-b7518",
+    "storage_bucket": "clothy-b7518.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:792531543146:android:45aa5464382fe503a2d613",
+        "android_client_info": {
+          "package_name": "com.example.clothy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "792531543146-9dd6svtup4rtt7vurtmksluiojq05mmq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.clothy",
+            "certificate_hash": "82e5e056a30ab819c3c1777a0f68a1f816d2249c"
+          }
+        },
+        {
+          "client_id": "792531543146-v3in87h2vhp86h9h8v88pio0ue7a9mij.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSEKosDg2TCHxYwmfSZtDFtKXyRO90Jws"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "792531543146-v3in87h2vhp86h9h8v88pio0ue7a9mij.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
