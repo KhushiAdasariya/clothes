@@ -14,7 +14,7 @@
         android:orientation="vertical"
         android:paddingBottom="100dp">
 
-        <!-- 1. Top Banner Slider (Simplified as a Card) -->
+        <!-- 1. Top Banner -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="200dp"
@@ -69,7 +69,7 @@
             </RelativeLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- 2. Categories Section (4 Categories) -->
+        <!-- 2. Categories Section (With Real Images) -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -98,21 +98,19 @@
                 android:gravity="center"
                 android:orientation="vertical"
                 android:clickable="true"
-                android:focusable="true"
-                android:background="?attr/selectableItemBackgroundBorderless">
+                android:focusable="true">
                 <com.google.android.material.card.MaterialCardView
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    app:cardCornerRadius="32dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    app:cardCornerRadius="35dp"
                     app:cardElevation="2dp"
-                    app:strokeWidth="1.5dp"
-                    app:strokeColor="#F1F5F9">
+                    app:strokeWidth="2dp"
+                    app:strokeColor="#FFFFFF">
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:padding="12dp"
-                        android:src="@drawable/kurti"
-                        app:tint="#2C4152" />
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/kurti" />
                 </com.google.android.material.card.MaterialCardView>
                 <TextView
                     android:layout_width="wrap_content"
@@ -133,21 +131,19 @@
                 android:gravity="center"
                 android:orientation="vertical"
                 android:clickable="true"
-                android:focusable="true"
-                android:background="?attr/selectableItemBackgroundBorderless">
+                android:focusable="true">
                 <com.google.android.material.card.MaterialCardView
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    app:cardCornerRadius="32dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    app:cardCornerRadius="35dp"
                     app:cardElevation="2dp"
-                    app:strokeWidth="1.5dp"
-                    app:strokeColor="#F1F5F9">
+                    app:strokeWidth="2dp"
+                    app:strokeColor="#FFFFFF">
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:padding="12dp"
-                        android:src="@drawable/shirts"
-                        app:tint="#2C4152" />
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/shirts" />
                 </com.google.android.material.card.MaterialCardView>
                 <TextView
                     android:layout_width="wrap_content"
@@ -168,21 +164,19 @@
                 android:gravity="center"
                 android:orientation="vertical"
                 android:clickable="true"
-                android:focusable="true"
-                android:background="?attr/selectableItemBackgroundBorderless">
+                android:focusable="true">
                 <com.google.android.material.card.MaterialCardView
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    app:cardCornerRadius="32dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    app:cardCornerRadius="35dp"
                     app:cardElevation="2dp"
-                    app:strokeWidth="1.5dp"
-                    app:strokeColor="#F1F5F9">
+                    app:strokeWidth="2dp"
+                    app:strokeColor="#FFFFFF">
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:padding="12dp"
-                        android:src="@drawable/kidsboy"
-                        app:tint="#2C4152" />
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/kidsboy" />
                 </com.google.android.material.card.MaterialCardView>
                 <TextView
                     android:layout_width="wrap_content"
@@ -194,7 +188,7 @@
                     android:fontFamily="sans-serif-medium" />
             </LinearLayout>
 
-            <!-- Category 4: New -->
+            <!-- Category 4: New Arrivals -->
             <LinearLayout
                 android:id="@+id/catNew"
                 android:layout_width="0dp"
@@ -203,21 +197,19 @@
                 android:gravity="center"
                 android:orientation="vertical"
                 android:clickable="true"
-                android:focusable="true"
-                android:background="?attr/selectableItemBackgroundBorderless">
+                android:focusable="true">
                 <com.google.android.material.card.MaterialCardView
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    app:cardCornerRadius="32dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    app:cardCornerRadius="35dp"
                     app:cardElevation="2dp"
-                    app:strokeWidth="1.5dp"
-                    app:strokeColor="#F1F5F9">
+                    app:strokeWidth="2dp"
+                    app:strokeColor="#FFFFFF">
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:padding="12dp"
-                        android:src="@drawable/top"
-                        app:tint="#2C4152" />
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/top" />
                 </com.google.android.material.card.MaterialCardView>
                 <TextView
                     android:layout_width="wrap_content"
@@ -231,7 +223,7 @@
 
         </LinearLayout>
 
-        <!-- 3. All Products Section -->
+        <!-- 3. Products Section -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

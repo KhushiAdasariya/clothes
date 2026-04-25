@@ -1,5 +1,6 @@
 package com.example.clothy
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -64,7 +65,9 @@ class AllFragment : Fragment() {
         binding.catMen.setOnClickListener { navigateToCategory("Men") }
         binding.catKids.setOnClickListener { navigateToCategory("Kids") }
         binding.catNew.setOnClickListener { 
-            Toast.makeText(context, "New Arrivals Selected", Toast.LENGTH_SHORT).show()
+            // FIXED: Now opening the newarrival activity
+            val intent = Intent(requireContext(), newarrival::class.java)
+            startActivity(intent)
         }
     }
 

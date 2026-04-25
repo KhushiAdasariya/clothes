@@ -15,6 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Clothy">
         <activity
+            android:name=".EditAddress"
+            android:exported="false" />
+        <activity
+            android:name=".newarrival"
+            android:exported="false" />
+        <activity
             android:name=".Searchactivity"
             android:exported="false" />
         <activity

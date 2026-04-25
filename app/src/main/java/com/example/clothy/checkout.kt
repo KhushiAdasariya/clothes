@@ -40,14 +40,14 @@ class checkout : AppCompatActivity() {
         }
 
         setupRecyclerView()
-        loadUserData(userId)
+        loadDefaultAddress(userId)
         loadCartData(userId)
 
         binding.btnConfirmOrder.setOnClickListener {
             if (isAddressAvailable) {
                 placeOrder(userId)
             } else {
-                Toast.makeText(this, "Please add your shipping address first", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Please select a default shipping address first", Toast.LENGTH_LONG).show()
             }
         }
     }
@@ -58,31 +58,37 @@ class checkout : AppCompatActivity() {
         binding.rvOrderItems.adapter = adapter
     }
 
-    private fun loadUserData(userId: String) {
-        db.getReference("Users").child(userId).addValueEventListener(object : ValueEventListener {
+    private fun loadDefaultAddress(userId: String) {
+        val addressRef = db.getReference("Users").child(userId).child("addresses")
+        
+        addressRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                var foundDefault = false
                 if (snapshot.exists()) {
-                    val name = snapshot.child("name").value?.toString() ?: "User"
-                    val mobile = snapshot.child("mobile").value?.toString() ?: ""
-                    val address = snapshot.child("address").value?.toString() ?: ""
-                    val city = snapshot.child("city").value?.toString() ?: ""
-                    val state = snapshot.child("state").value?.toString() ?: ""
-                    val pincode = snapshot.child("pincode").value?.toString() ?: ""
-
-                    binding.tvAddressName.text = name
-                    binding.tvAddressMobile.text = "+91 $mobile"
-                    
-                    if (address.isNotEmpty()) {
-                        binding.tvFullAddress.text = "$address, $city, $state - $pincode"
-                        binding.tvFullAddress.setTextColor(resources.getColor(android.R.color.black))
-                        isAddressAvailable = true
-                    } else {
-                        binding.tvFullAddress.text = "No address added yet. Click EDIT to add."
-                        binding.tvFullAddress.setTextColor(resources.getColor(android.R.color.holo_red_dark))
-                        isAddressAvailable = false
+                    for (snap in snapshot.children) {
+                        val address = snap.getValue(AddressModel::class.java)
+                        // UPDATED: Using 'default' instead of 'isDefault' to match AddressModel
+                        if (address != null && address.default) {
+                            binding.tvAddressName.text = address.name
+                            binding.tvAddressMobile.text = "+91 ${address.mobile}"
+                            binding.tvFullAddress.text = "${address.address}, ${address.locality}, ${address.city}, ${address.state} - ${address.pincode}"
+                            binding.tvFullAddress.setTextColor(resources.getColor(android.R.color.black))
+                            isAddressAvailable = true
+                            foundDefault = true
+                            break
+                        }
                     }
                 }
+
+                if (!foundDefault) {
+                    binding.tvAddressName.text = "No Default Address"
+                    binding.tvFullAddress.text = "Please go to Manage Address and set one as DEFAULT."
+                    binding.tvFullAddress.setTextColor(resources.getColor(android.R.color.holo_red_dark))
+                    binding.tvAddressMobile.text = ""
+                    isAddressAvailable = false
+                }
             }
+
             override fun onCancelled(error: DatabaseError) {}
         })
     }
@@ -130,7 +136,6 @@ class checkout : AppCompatActivity() {
         val orderId = db.getReference("Orders").push().key ?: ""
         val paymentMethod = if (binding.rbCOD.isChecked) "COD" else "Online"
         
-        // FIXED: Now including totalAmount so Order Details won't show null
         val orderMap = hashMapOf(
             "orderId" to orderId,
             "userId" to userId,

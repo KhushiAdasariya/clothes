@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F8FAFC">
+    android:background="#F8FAFC"
+    tools:context=".EditAddress">
 
     <!-- Header -->
     <RelativeLayout
-        android:id="@+id/headerAddAddress"
+        android:id="@+id/headerEditAddress"
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:background="#FFFFFF"
@@ -26,13 +27,12 @@
             app:tint="#2C4152" />
 
         <TextView
-            android:id="@+id/tvHeaderTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginStart="16dp"
             android:layout_toEndOf="@id/btnBack"
-            android:text="Add New Address"
+            android:text="Update Address"
             android:textColor="#2C4152"
             android:textSize="20sp"
             android:fontFamily="sans-serif-medium" />
@@ -54,16 +54,16 @@
             android:padding="16dp">
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnSaveAddress"
+                android:id="@+id/btnUpdateAddress"
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
-                android:text="SAVE ADDRESS"
+                android:text="UPDATE ADDRESS"
                 android:textAllCaps="true"
                 android:textSize="15sp"
                 android:textStyle="bold"
                 android:textColor="#FFFFFF"
                 android:backgroundTint="#2C4152"
-                app:cornerRadius="16dp"
+                app:cornerRadius="12dp"
                 android:elevation="4dp"/>
         </RelativeLayout>
     </com.google.android.material.card.MaterialCardView>
@@ -72,8 +72,8 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/headerAddAddress"
-        android:layout_above="@id/bottomBar"
+        android:layout_below="@id/headerEditAddress"
+        android:layout_above="@id/bottomSaveBar"
         android:scrollbars="none">
 
         <LinearLayout

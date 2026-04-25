@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F8FAFC">
+    android:background="#F8FAFC"
+    android:orientation="vertical"
+    tools:context=".newarrival">
 
-    <!-- Header -->
+    <!-- Premium Header -->
     <RelativeLayout
-        android:id="@+id/headerManageAddress"
+        android:id="@+id/headerNewArrival"
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:background="#FFFFFF"
@@ -31,77 +34,45 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="16dp"
             android:layout_toEndOf="@id/btnBack"
-            android:text="Saved Addresses"
+            android:text="New Arrivals"
             android:textColor="#2C4152"
             android:textSize="20sp"
             android:fontFamily="sans-serif-medium" />
     </RelativeLayout>
 
-    <!-- Bottom Add Button -->
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/bottomAddBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        app:cardCornerRadius="0dp"
-        app:cardElevation="16dp"
-        app:cardBackgroundColor="#FFFFFF">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp">
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnAddAddress"
-                android:layout_width="match_parent"
-                android:layout_height="58dp"
-                android:text="+ ADD NEW ADDRESS"
-                android:textAllCaps="true"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:textColor="#FFFFFF"
-                android:backgroundTint="#2C4152"
-                app:cornerRadius="12dp"
-                android:elevation="4dp"/>
-        </RelativeLayout>
-    </com.google.android.material.card.MaterialCardView>
-
-    <!-- Address List -->
+    <!-- Products Grid -->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvAddresses"
+        android:id="@+id/rvNewArrivals"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/headerManageAddress"
-        android:layout_above="@id/bottomAddBar"
-        android:padding="8dp"
         android:clipToPadding="false"
-        tools:listitem="@layout/item_address" />
+        android:padding="8dp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="2"
+        tools:listitem="@layout/item_product" />
 
     <!-- Empty State -->
     <LinearLayout
-        android:id="@+id/layoutEmptyAddress"
+        android:id="@+id/layoutEmpty"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/headerManageAddress"
-        android:layout_above="@id/bottomAddBar"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="40dp"
-        android:visibility="gone">
+        android:visibility="gone"
+        android:padding="40dp">
         <ImageView
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:src="@android:drawable/ic_menu_myplaces"
+            android:src="@drawable/newarrivals"
             app:tint="#E2E8F0" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="No Address Saved"
+            android:text="No new products today"
             android:textColor="#94A3B8"
             android:textSize="16sp"
             android:textStyle="bold" />
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>

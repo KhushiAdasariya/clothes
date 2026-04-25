@@ -4,50 +4,39 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.clothy.databinding.ActivityAddNewAddressBinding
+import com.example.clothy.databinding.ActivityEditAddressBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
-class AddNewAddress : AppCompatActivity() {
+class EditAddress : AppCompatActivity() {
 
-    private lateinit var binding: ActivityAddNewAddressBinding
+    private lateinit var binding: ActivityEditAddressBinding
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseDatabase
-    private var isEditMode = false
     private var addressId: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityAddNewAddressBinding.inflate(layoutInflater)
+        binding = ActivityEditAddressBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         auth = FirebaseAuth.getInstance()
         db = FirebaseDatabase.getInstance()
 
-        // Check if we are in Edit Mode
+        // Get Address ID from Intent
         addressId = intent.getStringExtra("ADDRESS_ID")
+
         if (addressId != null) {
-            isEditMode = true
-            binding.headerAddAddress.findViewById<android.widget.TextView>(R.id.tvHeaderTitle)?.text = "Edit Address"
             loadAddressDetails(addressId!!)
         } else {
-            loadUserInfo()
+            Toast.makeText(this, "Error: Address not found", Toast.LENGTH_SHORT).show()
+            finish()
         }
 
         binding.btnBack.setOnClickListener { finish() }
 
-        binding.btnSaveAddress.setOnClickListener {
-            saveAddress()
-        }
-    }
-
-    private fun loadUserInfo() {
-        val userId = auth.currentUser?.uid ?: return
-        db.getReference("Users").child(userId).get().addOnSuccessListener { snapshot ->
-            if (snapshot.exists()) {
-                binding.etFullName.setText(snapshot.child("name").value?.toString() ?: "")
-                binding.etMobile.setText(snapshot.child("mobile").value?.toString() ?: "")
-            }
+        binding.btnUpdateAddress.setOnClickListener {
+            updateAddress()
         }
     }
 
@@ -69,9 +58,12 @@ class AddNewAddress : AppCompatActivity() {
                     }
                 }
             }
+            .addOnFailureListener {
+                Toast.makeText(this, "Failed to load address", Toast.LENGTH_SHORT).show()
+            }
     }
 
-    private fun saveAddress() {
+    private fun updateAddress() {
         val userId = auth.currentUser?.uid ?: return
         
         val name = binding.etFullName.text.toString().trim()
@@ -84,15 +76,13 @@ class AddNewAddress : AppCompatActivity() {
         val type = if (binding.rbHome.isChecked) "Home" else "Work"
 
         if (name.isEmpty() || mobile.isEmpty() || pincode.isEmpty() || city.isEmpty() || state.isEmpty() || address.isEmpty()) {
-            Toast.makeText(this, "Please fill all required fields", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show()
             return
         }
 
-        val ref = db.getReference("Users").child(userId).child("addresses")
-        val id = if (isEditMode) addressId!! else ref.push().key ?: ""
+        val ref = db.getReference("Users").child(userId).child("addresses").child(addressId!!)
         
         val addressMap = hashMapOf(
-            "id" to id,
             "name" to name,
             "mobile" to mobile,
             "address" to address,
@@ -100,14 +90,16 @@ class AddNewAddress : AppCompatActivity() {
             "city" to city,
             "state" to state,
             "pincode" to pincode,
-            "addressType" to type,
-            "isDefault" to (!isEditMode && false) // Logic for default will be handled in Manage_Address
+            "addressType" to type
         )
 
-        ref.child(id).updateChildren(addressMap as Map<String, Any>)
+        ref.updateChildren(addressMap as Map<String, Any>)
             .addOnSuccessListener {
-                Toast.makeText(this, if (isEditMode) "Address Updated" else "Address Added", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Address Updated Successfully", Toast.LENGTH_SHORT).show()
                 finish()
+            }
+            .addOnFailureListener {
+                Toast.makeText(this, "Failed to update address", Toast.LENGTH_SHORT).show()
             }
     }
 }
